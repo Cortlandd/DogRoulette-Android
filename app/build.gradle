@@ -8,7 +8,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.dog_roulette.dogroulette"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -34,6 +34,9 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.apis/google-api-services-youtube
     api group: 'com.google.apis', name: 'google-api-services-youtube', version: 'v3-rev198-1.23.0'
 
+    // Using alternative video player that is more up to date
+    implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:7.0.0'
+
     // The Youtube Video player
-    api files('libs/YouTubeAndroidPlayerApi.jar')
+    //api files('libs/YouTubeAndroidPlayerApi.jar')
 }
