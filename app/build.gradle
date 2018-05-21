@@ -37,6 +37,9 @@ dependencies {
     // Using alternative video player that is more up to date
     implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:7.0.0'
 
+    // Kotlin HTTP library
+    implementation 'khttp:khttp:0.1.0'
+
     // The Youtube Video player
     //api files('libs/YouTubeAndroidPlayerApi.jar')
 }
