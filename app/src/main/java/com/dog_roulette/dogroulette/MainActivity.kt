@@ -11,6 +11,10 @@ import khttp.get
 import android.os.StrictMode
 import org.json.JSONArray
 import org.json.JSONObject
+import com.pierfrancescosoffritti.youtubeplayer.player.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayer
+import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerInitListener
+import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView
 
 
 class MainActivity : AppCompatActivity() {
@@ -74,8 +78,19 @@ class MainActivity : AppCompatActivity() {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
+        val youTubePlayerView: YouTubePlayerView = findViewById(R.id.player_view)
+        youTubePlayerView.initialize(object : YouTubePlayerInitListener {
+            override fun onInitSuccess(initializedYouTubePlayer: YouTubePlayer) {
+                initializedYouTubePlayer.addListener(object : AbstractYouTubePlayerListener() {
+                    override fun onReady() {
+                        initializedYouTubePlayer.loadVideo(search_youtube(), 0F)
+                    }
+                })
+            }
+        }, true)
+
         // run inside a separate thread
-        Thread().run { search_youtube() }
+        //Thread().run { search_youtube() }
 
     }
 
