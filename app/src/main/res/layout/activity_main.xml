@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,11 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView
-        android:id="@+id/player_view"
+    <LinearLayout
+        android:id="@+id/player_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/filter_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:layout_below="@id/player_layout"
+        android:layout_marginTop="50dp"
+        android:hint="filter(e.g. rottweiler, pitbull, adorable)"
+        android:inputType="text" />
 
+    <Button
+        android:id="@+id/fetch_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/filter_text"
+        android:layout_marginTop="30dp"
+        android:text="Fetch" />
 
-</LinearLayout>
+</RelativeLayout>
