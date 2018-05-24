@@ -12,7 +12,11 @@ import com.pierfrancescosoffritti.youtubeplayer.player.AbstractYouTubePlayerList
 import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayer
 import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerInitListener
 import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView
+import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerListener
 import java.util.*
+
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 
 class MainActivity : AppCompatActivity() {
@@ -78,25 +82,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // TODO: Remove once app is completely ready. Figure out how to run in another thread
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
-
+        // Reference to the video player
         val youTubePlayerView: YouTubePlayerView = findViewById(R.id.player_view)
-        youTubePlayerView.initialize(object : YouTubePlayerInitListener {
-            override fun onInitSuccess(initializedYouTubePlayer: YouTubePlayer) {
-                initializedYouTubePlayer.addListener(object : AbstractYouTubePlayerListener() {
-                    override fun onReady() {
-                        initializedYouTubePlayer.loadVideo(search_youtube(), 0F)
-                    }
-                })
-            }
-        }, true)
 
-        // run inside a separate thread
-        //Thread().run { search_youtube() }
+        // The player will automatically release itself when the activity is destroyed.
+        // The player will automatically pause when the activity is paused
+        lifecycle.addObserver(youTubePlayerView)
 
+        // Do asynchronously
+        doAsync {
+            youTubePlayerView.initialize(object : YouTubePlayerInitListener {
+                override fun onInitSuccess(initializedYouTubePlayer: YouTubePlayer) {
+                    initializedYouTubePlayer.addListener(object : AbstractYouTubePlayerListener() {
+                        var fetchedId: String? = search_youtube()
+                        override fun onReady() {
+                            // Do this back in the main thread
+                            uiThread {
+                                initializedYouTubePlayer.loadVideo(fetchedId, 0F)
+                            }
+                        }
+                    })
+                }
+            }, true)
+        }
     }
-
 
 }
