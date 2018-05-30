@@ -14,21 +14,24 @@
         android:layout_height="wrap_content"
         />
 
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:id="@+id/filter_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="52dp"
         android:hint="filter (e.g. rottweiler, pitbull)"
-        android:inputType="text" />
+        android:backgroundTint="#A9A9A9"
+        android:inputType="text"
+        android:textColorLink="@color/black" />
 
     <Button
-        android:layout_marginTop="50dp"
         android:id="@+id/fetch_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_custom"
         android:text="Fetch" />
 
 </LinearLayout>
