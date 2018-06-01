@@ -33,7 +33,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     // https://mvnrepository.com/artifact/com.google.apis/google-api-services-youtube
-    api group: 'com.google.apis', name: 'google-api-services-youtube', version: 'v3-rev198-1.23.0'
+    //api group: 'com.google.apis', name: 'google-api-services-youtube', version: 'v3-rev198-1.23.0'
 
     // Using alternative video player that is more up to date
     implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:7.0.0'
