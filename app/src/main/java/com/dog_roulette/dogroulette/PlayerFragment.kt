@@ -8,16 +8,13 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.pierfrancescosoffritti.youtubeplayer.player.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayer
-import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerInitListener
-import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView
 import org.jetbrains.anko.support.v4.uiThread
 import org.jetbrains.anko.uiThread
 import android.support.annotation.NonNull
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import com.pierfrancescosoffritti.youtubeplayer.player.*
 import khttp.get
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
